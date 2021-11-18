@@ -1,0 +1,10 @@
+aiogram>=2.11.2,<3.0
+environs~=8.0.0
+loguru~=0.5.3
+loader~=2017.9.11
+requests~=2.25.1
+matplotlib~=3.4.2
+gino~=1.0.1
+marshmallow-sqlalchemy~=0.18.0
+SQLAlchemy~=1.4.21
+asyncpg
