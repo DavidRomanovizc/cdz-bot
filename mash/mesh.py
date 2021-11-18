@@ -1,7 +1,7 @@
 import json
 import requests
 
-from mesh.answers import *
+from mash.answers import *
 
 
 def auth():
