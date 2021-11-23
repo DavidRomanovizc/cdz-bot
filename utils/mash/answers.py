@@ -1,4 +1,4 @@
-from mash.utils import generate_string
+from utils.mash.utils import generate_string
 
 
 def answer_single(answer_data):
