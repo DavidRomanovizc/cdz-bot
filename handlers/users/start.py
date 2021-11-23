@@ -1,8 +1,7 @@
-from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
-from asyncpg import UniqueViolationError
-
 from keyboards.inline.btn_menu import main_menu
+from asyncpg import UniqueViolationError
+from aiogram import types
 from loader import dp, db
 
 
