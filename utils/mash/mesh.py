@@ -1,7 +1,8 @@
 import json
 import requests
 
-from mash.answers import *
+from utils.mash.answers import *
+from utils.mash.utils import *
 
 
 def auth():
