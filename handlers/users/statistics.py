@@ -1,12 +1,8 @@
-import asyncio
-
-from aiogram import types
-from aiogram.types import CallbackQuery
-from asyncpg import UniqueViolationError
-
 from keyboards.inline.btn_menu import main_menu
+from asyncpg import UniqueViolationError
+from aiogram.types import CallbackQuery
 from loader import dp, db
-from utils.misc.graph import x
+import asyncio
 
 
 @dp.callback_query_handler(text="stats")
