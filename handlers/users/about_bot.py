@@ -1,6 +1,5 @@
-from aiogram.types import CallbackQuery
-
 from keyboards.inline.proj_sup import supported
+from aiogram.types import CallbackQuery
 from loader import dp
 
 
