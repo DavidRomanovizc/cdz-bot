@@ -4,5 +4,4 @@ loguru~=0.5.3
 loader~=2017.9.11
 requests~=2.25.1
 matplotlib~=3.4.2
-marshmallow-sqlalchemy~=0.18.0
 asyncpg
