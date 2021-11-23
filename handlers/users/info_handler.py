@@ -1,6 +1,5 @@
-from aiogram.types import CallbackQuery
-
 from keyboards.inline.back_btn import back_to_menu
+from aiogram.types import CallbackQuery
 from loader import dp
 
 
