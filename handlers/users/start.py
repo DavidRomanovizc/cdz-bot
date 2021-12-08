@@ -12,12 +12,7 @@ async def bot_start(message: types.Message):
                                 telegram_id=message.from_user.id,
                                 username=message.from_user.username)
     except UniqueViolationError:
-        user = await db.select_user(telegram_id=message.from_user.id)
-        if user.get('is_banned') is not True:
-            count_users = await db.count_users()
-            await message.reply(text=(f"Приветствую вас, {message.from_user.full_name}!\n"
-                                      f"Это система для решения онлайн тестов на образовательных платформах РФ\n\n"
-                                      f"Бот не может решать тесты, где есть задания ***открытого типа***\n"),
-                                reply_markup=main_menu)
-        elif user.get('is_banned') is True:
-            await message.answer(f'Вы заблокированы навсегда! За разблокировкой пишите админу')
+        await message.reply(text=(f"Приветствуем вас, уважаемый/уважаемая {message.from_user.full_name}!\n\n"
+                                  f"Это система для решения онлайн тестов на образовательных платформах РФ\n\n"
+                                  f"Бот не может решать тесты, где есть задания ***открытого типа***\n"),
+                            reply_markup=main_menu)
