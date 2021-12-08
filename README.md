@@ -16,6 +16,6 @@ A bot that solves online tests on educational platforms
 ## Installing ⚙️
 1. Clone this repository via ```gh repo clone DavidRomanovizc/cdz-bot```
 2. Setup a virtual environment ```python -m venv venv```
-3. Activate the virtual environment and set the requirements ```pip install -r requirements.txt```\
+3. Activate the virtual environment and set the requirements ```pip install -r requirements.txt```
 4. Rename example environment file ```.env.dist``` to active environment file ```.env``` and replace the token with your own
 5. Run bot ```app.py```
