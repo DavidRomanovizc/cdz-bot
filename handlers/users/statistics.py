@@ -7,6 +7,7 @@ import asyncio
 
 @dp.callback_query_handler(text="stats")
 async def get_stats(call: CallbackQuery):
+    await call.answer(cache_time=60)
     try:
         await db.add_user_Users(full_name=call.from_user.full_name,
                                 telegram_id=call.from_user.id,
