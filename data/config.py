@@ -13,4 +13,9 @@ DB_PASS = env.str('DB_PASS')
 DB_HOST = env.str('DB_HOST')
 DB_NAME = env.str('DB_NAME')
 
+
+API_ACCESS_TOKEN = env.str("api_access_token")
+PHONE_NUMBER = env.str("phone_number")
+SecretP2 = env.str("secret_p2p")
+
 UTOKEN = env.str("yootoken")
