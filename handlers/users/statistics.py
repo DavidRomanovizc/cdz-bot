@@ -23,4 +23,7 @@ async def get_stats(call: CallbackQuery):
                         f"- Ваш Telegram ID: ***{call.from_user.id}***\n"
                         f"- Дата создания: ***14.11.2021***")
             await asyncio.sleep(1)
-            await call.message.answer("Меню: ", reply_markup=main_menu)
+            await call.message.answer("***👨‍💻 Cdz.Bot*** - телеграм бот, который может решать цдз тесты\n\n"
+                                      "***🤝 Сотрудничество:***\n"
+                                      "Если у вас есть предложение о сотрудничестве, пишите сюда - "
+                                      "@DRomanovizc", reply_markup=main_menu)
