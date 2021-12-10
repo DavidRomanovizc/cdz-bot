@@ -1,6 +1,7 @@
+from keyboards.inline.back_btn import cancel_test
 from keyboards.inline.btn_menu import main_menu
 from aiogram.dispatcher import FSMContext
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, MessageEntityType, MessageEntity
 
 from keyboards.inline.payment_methods import buy_sub
 from states.cdzstate import Test
@@ -16,8 +17,10 @@ async def bot_start(call: CallbackQuery):
     user = await db.select_user(telegram_id=call.from_user.id)
     is_premium = user.get('is_premium')
     if is_premium is True:
-        await call.message.edit_text("Отправьте ссылку на тест")
+        await call.message.edit_text("Отправьте ссылку на тест.\n\n"
+                                     "Если вы отправите что-то другое бот ***не будет отвечать***\n")
         await Test.Q1.set()
+
     else:
         await call.message.edit_text("Вам нужно приобрести подписку", reply_markup=buy_sub)
 
@@ -25,17 +28,16 @@ async def bot_start(call: CallbackQuery):
 @dp.message_handler(state=Test.Q1)
 async def answer_q1(message: types.Message, state: FSMContext):
     answer = message.text
-    answers = mesh.get_answers(f"{answer}")
-    user = await db.select_user(telegram_id=message.from_user.id)
-    is_premium = user.get('is_premium')
-    if is_premium is True:
-        await asyncio.sleep(1)
-        for i in answers:
+    for entity in message.entities:
+        if entity.type == "url":
+            answers = mesh.get_answers(f"{answer}")
             await asyncio.sleep(1)
-            await message.answer(f"***✏️ Задание***\n`└{i[0]}`\n\n 👑 Ответ:\n`└{i[1]}`")
-        await message.answer("***Выдача ответов завершена!***\n"
-                             "Вы автоматически вернулись в меню", reply_markup=main_menu)
+            for i in answers:
+                await asyncio.sleep(1)
+                await message.answer(f"***✏️ Задание***\n`└{i[0]}`\n\n 👑 Ответ:\n`└{i[1]}`")
+            await message.answer("***Выдача ответов завершена!***\n"
+                                 "Вы автоматически вернулись в меню", reply_markup=main_menu)
+            await state.finish()
+    else:
         await state.finish()
 
-    else:
-        await message.answer("Вам нужно приобрести подписку", reply_markup=buy_sub)
