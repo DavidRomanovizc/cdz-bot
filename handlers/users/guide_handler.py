@@ -36,7 +36,7 @@ async def get_backward_f(call: CallbackQuery):
 async def get_forward_s(call: CallbackQuery):
     await call.answer(cache_time=60)
     photo = InputMediaPhoto(
-        "https://sun9-73.userapi.com/impg/7FVSju9XrZwQmjJOEVcaOWhYALvyXGKTA3q_0A/i6sMs0CTcI4.jpg?size=1185x1278&quality=96&sign=8184238271b0b0101e561b37e2450483&type=album",
+        "https://sun9-1.userapi.com/impg/3d_HLxu7T6_AKdZPPp0PaCBzK8b568RcouVH-g/GWMBuVx4k9E.jpg?size=1185x1278&quality=96&sign=a02574db5949e1b5d96721ff4c4f25fd&type=album",
         caption="Руководство по боту: \n***Страница №3***")
     await call.message.edit_media(photo, reply_markup=third_str)
 
@@ -65,7 +65,7 @@ async def get_backward_f(call: CallbackQuery):
 async def get_backward_f(call: CallbackQuery):
     await call.answer(cache_time=60)
     photo = InputMediaPhoto(
-        "https://sun9-73.userapi.com/impg/7FVSju9XrZwQmjJOEVcaOWhYALvyXGKTA3q_0A/i6sMs0CTcI4.jpg?size=1185x1278&quality=96&sign=8184238271b0b0101e561b37e2450483&type=album",
+        "https://sun9-1.userapi.com/impg/3d_HLxu7T6_AKdZPPp0PaCBzK8b568RcouVH-g/GWMBuVx4k9E.jpg?size=1185x1278&quality=96&sign=a02574db5949e1b5d96721ff4c4f25fd&type=album",
         caption="Руководство по боту: \n***Страница №3***"
     )
     await call.message.edit_media(photo, reply_markup=third_str)
