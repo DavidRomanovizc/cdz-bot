@@ -46,7 +46,9 @@ class Database:
         id SERIAL PRIMARY KEY,
         full_name VARCHAR(255) NOT NULL,
         username varchar(255) NULL,
-        telegram_id BIGINT NOT NULL UNIQUE 
+        telegram_id BIGINT NOT NULL UNIQUE,
+        balance INTEGER DEFAULT 0 NOT NULL,
+        is_premium bool NULL
         );
         """
         await self.execute(sql, execute=True)
@@ -59,16 +61,32 @@ class Database:
         ])
         return sql, tuple(parameters.values())
 
-    async def add_user_Users(self, full_name, username, telegram_id):
-        sql = '''INSERT INTO users (full_name, username, telegram_id) 
-                       VALUES($1, $2, $3) returning *'''
-        return await self.execute(sql, full_name, username, telegram_id,
+    async def add_user_Users(self, full_name, username, telegram_id, balance=0, is_premium=False):
+        sql = '''INSERT INTO users (full_name, username, telegram_id, balance, is_premium)
+                       VALUES($1, $2, $3, $4, $5) returning *'''
+        return await self.execute(sql, full_name, username, telegram_id, balance, is_premium,
                                   fetchrow=True)
 
     async def select_user(self, **kwargs):
         sql = "SELECT * FROM Users WHERE "
         sql, parameters = self.format_args(sql, parameters=kwargs)
         return await self.execute(sql, *parameters, fetchrow=True)
+
+    async def check_premium(self, telegram_id):
+        sql = "SELECT is_premium FROM Users WHERE telegram_id=$1"
+        return await self.execute(sql, telegram_id, fetchrow=True)
+
+    async def update_premiun(self, is_premium, telegram_id, ):
+        sql = "UPDATE Users SET is_premium=$1 WHERE telegram_id=$2"
+        return await self.execute(sql, is_premium, telegram_id, execute=True)
+
+    async def check_balance(self, telegram_id):
+        sql = "SELECT balance FROM Users WHERE telegram_id=$1"
+        return await self.execute(sql, telegram_id, fetchrow=True)
+
+    async def set_balance(self, telegram_id, money):
+        sql = "UPDATE Users SET balance=$2 WHERE telegram_id=$1"
+        return await self.execute(sql, money, telegram_id, execute=True)
 
     async def select_all_users(self):
         sql = "SELECT * FROM Users"
