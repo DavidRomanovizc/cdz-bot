@@ -27,7 +27,7 @@ async def bot_start(message: types.Message):
         is_premium = user.get('is_premium')
         balance = user.get('balance')
         await message.reply(text=(f"Приветствуем вас, уважаемый/уважаемая {message.from_user.full_name}!\n\n"
-                                  f"💸 Ваш баланс: ***{balance}*** | Подписка: ***{is_premium}***\n | True - уже "
+                                  f"💸 Ваш баланс: ***{balance}₽*** | Подписка: ***{is_premium}***\n | True - уже "
                                   f"куплена | "
                                   f"False - не куплена|\n\n "
                                   f"Это система для решения онлайн тестов на образовательных платформах РФ\n\n"
