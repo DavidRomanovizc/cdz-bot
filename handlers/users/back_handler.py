@@ -5,7 +5,6 @@ from loader import dp, bot
 
 @dp.callback_query_handler(text="back")
 async def back_to_menu(call: CallbackQuery):
-    await call.answer(cache_time=60)
     await call.message.edit_text("***👨‍💻 Cdz.Bot*** - телеграм бот, который может решать цдз тесты\n\n"
                                  "***🤝 Сотрудничество:***\n"
                                  "Если у вас есть предложение о сотрудничестве, пишите сюда - "
