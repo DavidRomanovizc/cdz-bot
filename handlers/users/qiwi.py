@@ -11,7 +11,7 @@ from keyboards.inline.payment_methods import pay_Qiwi
 from loader import wallet, dp, db, bot
 
 
-async def create_payment(amount: Union[float, int] = 1) -> qiwi_types.Bill:
+async def create_payment(amount: Union[float, int] = 59) -> qiwi_types.Bill:
     async with wallet:
         return await wallet.create_p2p_bill(amount=amount)
 
