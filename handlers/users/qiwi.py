@@ -34,9 +34,9 @@ async def check_price(call: CallbackQuery):
 
 
 @dp.callback_query_handler(text='pay_qiwi')
-async def payment(message: Union[CallbackQuery, types.Message], state: FSMContext):
-    await message.answer(cache_time=60)
-    user = await db.select_user(telegram_id=message.from_user.id)
+async def payment(call: CallbackQuery, state: FSMContext):
+    await call.answer(cache_time=60)
+    user = await db.select_user(telegram_id=call.from_user.id)
     try:
         is_premium = user.get('is_premium')
         print(is_premium)
@@ -51,19 +51,19 @@ async def payment(message: Union[CallbackQuery, types.Message], state: FSMContex
     btn3 = types.InlineKeyboardButton(text='Отмена', callback_data='cancel_payment')
     keyboard.add(btn3)
     if is_premium is True:
-        await bot.send_message(message.from_user.id, text=f"Поздравляю! Доступ уже куплен :)")
+        await bot.send_message(call.from_user.id, text=f"Поздравляю! Доступ уже куплен :)")
         await asyncio.sleep(1)
-        await bot.send_message(message.from_user.id, text=f"👑 Приветствуем вас, {message.from_user.full_name}!\n\n"
-                                                          f"🖥️ Это система для решения ***онлайн тестов*** на "
-                                                          f"образовательных платформах РФ\n\n "
-                                                          f"Бот не может решать тесты, где есть ***задания открытого "
-                                                          f"типа***\n",
+        await bot.send_message(call.from_user.id, text=f"👑 Приветствуем вас, {call.from_user.full_name}!\n\n"
+                                                       f"🖥️ Это система для решения ***онлайн тестов*** на "
+                                                       f"образовательных платформах РФ\n\n "
+                                                       f"Бот не может решать тесты, где есть ***задания открытого "
+                                                       f"типа***\n",
                                reply_markup=main_menu)
 
     else:
-        await bot.send_message(message.from_user.id, text=f"После оплаты нажми ***Проверить оплату***\n"
-                                                          f"Если не получается оплатить по странице ниже, "
-                                                          f"напиши сюда: @DRomanovizc",
+        await bot.send_message(call.from_user.id, text=f"После оплаты нажми ***Проверить оплату***\n"
+                                                       f"Если не получается оплатить по странице ниже, "
+                                                       f"напиши сюда: @DRomanovizc",
                                reply_markup=keyboard)
         await state.set_state("payment")
         await state.update_data(bill=bill)
