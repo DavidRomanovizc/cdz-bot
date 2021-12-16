@@ -2,8 +2,8 @@
 A bot that solves online tests on educational platforms
 
 
-## Bot functionality
- ***Soon...***
+## Bot functionality 💡
+A bot in the telegram messenger that can solve any mesh test
 
 ## System requirements 📝
  [![Python](https://img.shields.io/badge/Python-3.8%2B-yellow?style=flat-square)](https://www.python.org/downloads/)\
